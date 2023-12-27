@@ -1,9 +1,12 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
-function Heading({ title }) {
+function Header({ title }) {
     return (
         <header>
-            <h1>{title}</h1>
+            <h1>
+                <Link to="/">{title}</Link>
+            </h1>
             <div className="navigation">
                 <ul>
                     <li>Arsip</li>
@@ -13,4 +16,4 @@ function Heading({ title }) {
     )
 }
 
-export default Heading;
+export default Header;

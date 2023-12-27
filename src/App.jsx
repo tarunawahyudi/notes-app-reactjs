@@ -1,21 +1,20 @@
 import React from 'react';
-import Heading from './templates/Heading';
-import NoteItem from './components/NoteItem';
-import NoteList from './components/NoteList';
-import ActionButton from './components/ActionButton';
+import Header from './templates/Header.jsx';
+import {Route, Routes} from "react-router-dom";
+import Homepage from "./pages/Homepage.jsx";
+import DetailPage from "./pages/DetailPage.jsx";
+import AddPage from "./pages/AddPage.jsx";
 
 function App() {
   return (
     <div className="app-container">
-      <Heading title="Mynotes" />
+      <Header title="Mynotes" />
       <main>
-        <section className="search-bar">
-          <h2>Catatan Aktif</h2>
-          <input type="text" placeholder='Cari berdasarkan judul ...' />
-        </section>
-
-        <NoteList />
-        <ActionButton />
+        <Routes>
+          <Route path="/" element={<Homepage />}/>
+          <Route path="/notes/new" element={<AddPage />}/>
+          <Route path="/notes/:id" element={<DetailPage />}/>
+        </Routes>
       </main>
     </div>
   );
