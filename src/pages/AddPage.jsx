@@ -3,7 +3,6 @@ import ActionButton from "../components/ActionButton.jsx";
 import {addNote} from "../utils/local-data.js";
 
 class AddPage extends React.Component {
-    #isSuccess;
     constructor(props) {
         super(props);
 
@@ -34,16 +33,16 @@ class AddPage extends React.Component {
     }
 
     onSaveHandler() {
+
         if (!this.state.title || !this.state.body) {
-            this.#isSuccess = false;
             return alert('Title and body must not blank');
         }
 
         addNote(this.state);
-        this.#isSuccess = true;
     }
 
     render() {
+
         return (
             <section className="add-new-page">
                 <div className="add-new-page__input">
@@ -61,8 +60,8 @@ class AddPage extends React.Component {
                 </div>
                 <div className="add-new-page__action">
                     <ActionButton
-                        target={this.#isSuccess ? "/" : "/notes/new"}
                         icon="check"
+                        target="/"
                         handler={this.onSaveHandler}/>
                 </div>
             </section>
