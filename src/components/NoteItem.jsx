@@ -2,7 +2,7 @@ import React from "react";
 import {showFormattedDate} from "../utils/index.js";
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
-function NoteItem({ title, body, createdAt, archived, id }) {
+function NoteItem({ title, body, createdAt, id }) {
 
     return (
         <article className="note-item">
