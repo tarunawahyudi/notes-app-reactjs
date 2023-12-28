@@ -1,14 +1,16 @@
 import React from "react";
 import NoteList from "../components/NoteList.jsx";
 import SearchBar from "../components/SearchBar.jsx";
-import AddButton from "../components/AddButton.jsx";
+import ActionButton from "../components/ActionButton.jsx";
 
 function Homepage() {
     return (
         <>
             <SearchBar />
             <NoteList />
-            <AddButton />
+            <div className="homepage__action">
+                <ActionButton target="/notes/new" icon="plus" />
+            </div>
         </>
     )
 }
