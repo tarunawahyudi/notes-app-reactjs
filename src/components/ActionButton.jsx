@@ -11,7 +11,7 @@ function ActionButton({ target, icon, handler }) {
 
     return (
             <Link to={target}>
-                <button className="action" type="button" title="Tambah" onClick={handler}>
+                <button className="action" type="button" onClick={handler}>
                     <FontAwesomeIcon icon={['fas', selectedIcon]} />
                 </button>
             </Link>

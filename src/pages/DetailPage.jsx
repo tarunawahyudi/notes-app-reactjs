@@ -1,5 +1,5 @@
 import React from "react";
-import {getNote} from "../utils/local-data.js";
+import {deleteNote, getNote} from "../utils/local-data.js";
 import {useParams} from "react-router-dom";
 import DetailNote from "../components/DetailNote.jsx";
 import ActionButton from "../components/ActionButton.jsx";
@@ -16,6 +16,12 @@ class DetailPage extends React.Component {
         this.state = {
             note: getNote(props.id)
         }
+
+        this.onDeleteHandler = this.onDeleteHandler.bind(this);
+    }
+
+    onDeleteHandler() {
+        deleteNote(this.props.id);
     }
     render() {
         if (this.state.note === null) {
@@ -25,7 +31,7 @@ class DetailPage extends React.Component {
             <>
                 <DetailNote {...this.state.note} />
                 <div className="detail-page__action">
-                    <ActionButton icon="trash" target="/"/>
+                    <ActionButton icon="trash" target="/" handler={this.onDeleteHandler}/>
                     <ActionButton icon="archive" target="/"/>
                 </div>
             </>
