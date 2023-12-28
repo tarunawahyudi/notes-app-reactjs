@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import {library} from "@fortawesome/fontawesome-svg-core";
+import PropTypes from "prop-types";
 
 library.add(fas);
 function ActionButton({ target, icon, handler }) {
@@ -16,6 +17,12 @@ function ActionButton({ target, icon, handler }) {
                 </button>
             </Link>
     )
+}
+
+ActionButton.propTypes = {
+    target: PropTypes.string,
+    icon: PropTypes.string,
+    handler: PropTypes.func
 }
 
 export default ActionButton;

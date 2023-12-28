@@ -15,8 +15,12 @@ function NoteItem({ title, body, createdAt, archived, id }) {
     )
 }
 
-NoteItem.proptypes = {
-    title: PropTypes.string.isRequired
+NoteItem.propTypes = {
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    body: PropTypes.string.isRequired,
+    createdAt: PropTypes.string,
+    archived: PropTypes.bool
 }
 
 export default NoteItem;

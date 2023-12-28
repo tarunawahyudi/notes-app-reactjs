@@ -3,6 +3,7 @@ import {deleteNote, getNote} from "../utils/local-data.js";
 import {useParams} from "react-router-dom";
 import DetailNote from "../components/DetailNote.jsx";
 import ActionButton from "../components/ActionButton.jsx";
+import PropTypes from "prop-types";
 
 function DetailPageWrapper() {
     const {id} = useParams();
@@ -37,6 +38,10 @@ class DetailPage extends React.Component {
             </>
         )
     }
+}
+
+DetailPage.propTypes = {
+    id: PropTypes.string.isRequired
 }
 
 export default DetailPageWrapper;

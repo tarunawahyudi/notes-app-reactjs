@@ -47,11 +47,13 @@ class AddPage extends React.Component {
             <section className="add-new-page">
                 <div className="add-new-page__input">
                     <input
+                        name="input-field__title"
                         className="add-new-page__input__title"
                         value={this.state.title}
                         onChange={this.onChangeTitleHandler}
                         placeholder="Catatan rahasia" />
                     <textarea
+                        name="textarea-field__body"
                         className="add-new-page__input__body"
                         value={this.state.body}
                         onChange={this.onChangeBodyHandler}

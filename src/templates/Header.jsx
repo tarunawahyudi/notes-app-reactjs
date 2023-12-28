@@ -1,5 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import PropTypes from "prop-types";
 
 function Header({ title }) {
     return (
@@ -14,6 +15,10 @@ function Header({ title }) {
             </div>
         </header>
     )
+}
+
+Header.propTypes = {
+    title: PropTypes.string.isRequired
 }
 
 export default Header;

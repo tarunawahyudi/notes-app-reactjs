@@ -1,5 +1,6 @@
 import React from "react";
 import {showFormattedDate} from "../utils/index.js";
+import PropTypes from "prop-types";
 
 function DetailNote({title, createdAt, body}) {
     return (
@@ -13,4 +14,9 @@ function DetailNote({title, createdAt, body}) {
     )
 }
 
+DetailNote.propTypes = {
+    title: PropTypes.string.isRequired,
+    createdAt: PropTypes.string.isRequired,
+    body: PropTypes.string.isRequired
+}
 export default DetailNote;
