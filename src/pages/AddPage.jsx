@@ -1,8 +1,9 @@
 import React from "react";
 import ActionButton from "../components/ActionButton.jsx";
 import {addNote} from "../utils/local-data.js";
+import ApplicationPage from "../core/services/ApplicationPage.jsx";
 
-class AddPage extends React.Component {
+class AddPage extends ApplicationPage {
     constructor(props) {
         super(props);
 
@@ -10,10 +11,6 @@ class AddPage extends React.Component {
             title: '',
             body: ''
         }
-
-        this.onSaveHandler = this.onSaveHandler.bind(this);
-        this.onChangeTitleHandler = this.onChangeTitleHandler.bind(this);
-        this.onChangeBodyHandler = this.onChangeBodyHandler.bind(this);
     }
 
     onChangeTitleHandler(event) {
