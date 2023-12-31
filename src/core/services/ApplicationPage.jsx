@@ -1,17 +1,6 @@
 import React from "react";
-import LoginPage from "../../pages/LoginPage.jsx";
 
 class ApplicationPage extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            isLogged: false
-        }
-
-        this.bindMethods();
-        this.authValidation();
-    }
 
     bindMethods() {
         Object.getOwnPropertyNames(Object.getPrototypeOf(this))
@@ -21,10 +10,8 @@ class ApplicationPage extends React.Component {
             });
     }
 
-    authValidation() {
-        if (!this.state.isLogged) {
-            console.log('Anda belum login');
-        }
+    componentDidMount() {
+        this.bindMethods();
     }
 }
 

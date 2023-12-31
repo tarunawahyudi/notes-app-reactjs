@@ -4,24 +4,33 @@ import {useParams} from "react-router-dom";
 import DetailNote from "../components/DetailNote.jsx";
 import ActionButton from "../components/ActionButton.jsx";
 import PropTypes from "prop-types";
+import ApplicationPage from "../core/services/ApplicationPage.jsx";
 
 function DetailPageWrapper() {
     const {id} = useParams();
     return <DetailPage id={id} />
 }
 
-class DetailPage extends React.Component {
-    constructor(props) {
-        super(props);
+class DetailPage extends ApplicationPage {
 
-        this.state = {
-            note: getNote(props.id)
-        }
+    static propTypes = {
+        id: PropTypes.string.isRequired
+    };
 
-        this.onDeleteHandler = this.onDeleteHandler.bind(this);
+    state = {
+        note: null
     }
 
-    onDeleteHandler() {
+    componentDidMount() {
+        this.getNoteData();
+    }
+
+    getNoteData = () => {
+        const note = getNote(this.props.id);
+        this.setState({ note });
+    };
+
+    onDeleteHandler = () => {
         deleteNote(this.props.id);
     }
     render() {
@@ -39,9 +48,4 @@ class DetailPage extends React.Component {
         )
     }
 }
-
-DetailPage.propTypes = {
-    id: PropTypes.string.isRequired
-}
-
 export default DetailPageWrapper;

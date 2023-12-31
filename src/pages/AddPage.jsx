@@ -4,16 +4,13 @@ import {addNote} from "../utils/local-data.js";
 import ApplicationPage from "../core/services/ApplicationPage.jsx";
 
 class AddPage extends ApplicationPage {
-    constructor(props) {
-        super(props);
 
-        this.state = {
-            title: '',
-            body: ''
-        }
+    state = {
+        title: '',
+        body: ''
     }
 
-    onChangeTitleHandler(event) {
+    onChangeTitleHandler = (event) => {
         this.setState(() => {
             return {
                 title: event.target.value,
@@ -21,7 +18,7 @@ class AddPage extends ApplicationPage {
         })
     }
 
-    onChangeBodyHandler(event) {
+    onChangeBodyHandler = (event) => {
         this.setState(() => {
             return {
                 body: event.target.value
@@ -29,7 +26,7 @@ class AddPage extends ApplicationPage {
         })
     }
 
-    onSaveHandler() {
+    onSaveHandler = () => {
 
         if (!this.state.title || !this.state.body) {
             return alert('Title and body must not blank');
