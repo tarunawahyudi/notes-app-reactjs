@@ -4,14 +4,13 @@ import {useParams} from "react-router-dom";
 import DetailNote from "../components/DetailNote.jsx";
 import ActionButton from "../components/ActionButton.jsx";
 import PropTypes from "prop-types";
-import ApplicationPage from "../core/services/ApplicationPage.jsx";
 
 function DetailPageWrapper() {
     const {id} = useParams();
     return <DetailPage id={id} />
 }
 
-class DetailPage extends ApplicationPage {
+class DetailPage extends React.Component {
 
     static propTypes = {
         id: PropTypes.string.isRequired

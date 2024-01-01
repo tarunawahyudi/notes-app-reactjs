@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import NoteList from "../components/NoteList.jsx";
 import SearchBar from "../components/SearchBar.jsx";
 import ActionButton from "../components/ActionButton.jsx";
@@ -6,7 +6,14 @@ import {getAllNotes} from "../utils/local-data.js";
 
 function Homepage() {
 
-    const notes = getAllNotes()
+    const [notes, setNote] = useState([]);
+
+    useEffect(() => {
+        async function fetchNotes() {
+
+        }
+    }, [notes]);
+    // const notes = getAllNotes()
 
     return (
         <>

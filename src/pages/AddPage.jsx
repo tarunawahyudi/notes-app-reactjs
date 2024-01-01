@@ -1,9 +1,8 @@
 import React from "react";
 import ActionButton from "../components/ActionButton.jsx";
 import {addNote} from "../utils/local-data.js";
-import ApplicationPage from "../core/services/ApplicationPage.jsx";
 
-class AddPage extends ApplicationPage {
+class AddPage extends React.Component {
 
     state = {
         title: '',
