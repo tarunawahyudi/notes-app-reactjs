@@ -1,14 +1,10 @@
 import useInput from "../hooks/useInput.js";
-import {useContext, useEffect} from "react";
 import {login} from "../utils/network-data.js";
 import {Link} from "react-router-dom";
-import AuthContext from "../context/AuthContext.js";
-import Homepage from "./Homepage.jsx";
 
 function LoginPage({ loginSuccess }) {
     const [email, handleEmailChange] = useInput('');
     const [password, handlePasswordChange] = useInput('');
-    const auth = useContext(AuthContext);
 
     const onLogin = async () => {
         const {error, data} = await login({email, password});

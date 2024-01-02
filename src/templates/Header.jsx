@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 import LogoutButton from "../components/LogoutButton.jsx";
 
-function Header({ title }) {
+function Header({ title, logout }) {
     return (
         <header>
             <h1>
@@ -18,7 +18,7 @@ function Header({ title }) {
                     </li>
                 </ul>
             </div>
-            <LogoutButton />
+            <LogoutButton onLogout={logout} />
         </header>
     )
 }
