@@ -23,7 +23,8 @@ function App() {
     const { data } = await getUserLogged();
 
     setAuthedUser(data);
-    putAuthedUser(JSON.stringify(data));
+    const saveToStorage = JSON.stringify(data);
+    putAuthedUser(saveToStorage);
     redirect('/');
   }
 

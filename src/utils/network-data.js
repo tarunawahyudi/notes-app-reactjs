@@ -17,7 +17,8 @@ function removeAuthedUser() {
 }
 
 function getAuthedUser() {
-    return (localStorage.getItem('u')) ? localStorage.getItem('u') : null;
+    const storedData = localStorage.getItem('u');
+    return storedData ? JSON.parse(storedData) : null;
 }
 
 async function fetchWithToken(url, options = {}) {

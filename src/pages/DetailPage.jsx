@@ -1,13 +1,14 @@
 import React from "react";
-import {deleteNote, getNote} from "../utils/local-data.js";
-import {useParams} from "react-router-dom";
+import {deleteNote, getNote} from "../utils/network-data.js";
+import {useNavigate, useParams} from "react-router-dom";
 import DetailNote from "../components/DetailNote.jsx";
 import ActionButton from "../components/ActionButton.jsx";
 import PropTypes from "prop-types";
 
 function DetailPageWrapper() {
     const {id} = useParams();
-    return <DetailPage id={id} />
+    const redirect = useNavigate();
+    return <DetailPage id={id} redirect={redirect} />
 }
 
 class DetailPage extends React.Component {
@@ -24,13 +25,17 @@ class DetailPage extends React.Component {
         this.getNoteData();
     }
 
-    getNoteData = () => {
-        const note = getNote(this.props.id);
-        this.setState({ note });
+    getNoteData = async () => {
+        const {data} = await getNote(this.props.id);
+        this.setState({ note: data });
     };
 
-    onDeleteHandler = () => {
-        deleteNote(this.props.id);
+    onDeleteHandler = async () => {
+        const { error } = await deleteNote(this.props.id);
+        if (!error) {
+            this.setState({note: null});
+            this.props.redirect('/');
+        }
     }
     render() {
         if (this.state.note === null) {
@@ -40,7 +45,7 @@ class DetailPage extends React.Component {
             <>
                 <DetailNote {...this.state.note} />
                 <div className="detail-page__action">
-                    <ActionButton icon="trash" target="/" handler={this.onDeleteHandler}/>
+                    <ActionButton icon="trash" handler={this.onDeleteHandler}/>
                     <ActionButton icon="archive" target="/"/>
                 </div>
             </>
