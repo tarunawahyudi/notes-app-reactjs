@@ -10,7 +10,7 @@ function RegisterPage() {
     const [password, handlerChangePassword] = useInput('');
     const [confirmPassword, handlerChangeConfirmPassword] = useInput('');
 
-    const auth = useContext(AuthContext);
+    const {authedUser} = useContext(AuthContext);
     const redirect = useNavigate();
 
     const onSubmitHandler = async () => {
@@ -27,7 +27,7 @@ function RegisterPage() {
         }
     }
 
-    if (auth) {
+    if (authedUser) {
         return <Navigate to="/login" />
     }
 

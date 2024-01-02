@@ -1,8 +1,11 @@
 import useInput from "../hooks/useInput.js";
 import {login} from "../utils/network-data.js";
-import {Link} from "react-router-dom";
+import {Link, Navigate} from "react-router-dom";
+import {useContext} from "react";
+import AuthContext from "../context/AuthContext.js";
 
 function LoginPage({ loginSuccess }) {
+    const { authedUser } = useContext(AuthContext);
     const [email, handleEmailChange] = useInput('');
     const [password, handlePasswordChange] = useInput('');
 
@@ -11,6 +14,10 @@ function LoginPage({ loginSuccess }) {
         if (!error) {
             await loginSuccess(data);
         }
+    }
+
+    if (authedUser) {
+        return <Navigate to="/login" />
     }
 
     return (

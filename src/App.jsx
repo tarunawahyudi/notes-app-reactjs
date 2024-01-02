@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useMemo, useState} from 'react';
 import Header from './templates/Header.jsx';
-import {Route, Routes} from "react-router-dom";
+import {Route, Routes, useNavigate} from "react-router-dom";
 import Homepage from "./pages/Homepage.jsx";
 import DetailPage from "./pages/DetailPage.jsx";
 import AddPage from "./pages/AddPage.jsx";
@@ -16,11 +16,14 @@ function App() {
   const [theme, setTheme] = useState('light');
   const [locale, setLocale] = useState('id');
 
+  const redirect = useNavigate();
+
   const onLoginSuccess = async ({ accessToken }) => {
     putAccessToken(accessToken);
     const { data } = await getUserLogged();
 
     setAuthedUser(data);
+    redirect('/');
   }
 
   const onLogout = () => {
