@@ -10,7 +10,7 @@ function RegisterPage() {
     const [password, handlerChangePassword] = useInput('');
     const [confirmPassword, handlerChangeConfirmPassword] = useInput('');
 
-    const { auth, authentication } = useContext(AuthContext);
+    const auth = useContext(AuthContext);
     const redirect = useNavigate();
 
     const onSubmitHandler = async () => {
@@ -22,7 +22,6 @@ function RegisterPage() {
         }
         const {error} = await register({name, email, password});
         if (!error) {
-            authentication();
             alert('Registrasi Berhasil! 🎉');
             redirect('/login');
         }

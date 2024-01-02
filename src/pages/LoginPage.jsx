@@ -1,27 +1,20 @@
 import useInput from "../hooks/useInput.js";
 import {useContext, useEffect} from "react";
-import {getAccessToken, login, putAccessToken} from "../utils/network-data.js";
+import {login} from "../utils/network-data.js";
 import {Link} from "react-router-dom";
 import AuthContext from "../context/AuthContext.js";
 import Homepage from "./Homepage.jsx";
 
-function LoginPage() {
+function LoginPage({ loginSuccess }) {
     const [email, handleEmailChange] = useInput('');
     const [password, handlePasswordChange] = useInput('');
-    const {auth, authentication} = useContext(AuthContext);
+    const auth = useContext(AuthContext);
 
-    const onSubmitHandler = async () => {
+    const onLogin = async () => {
         const {error, data} = await login({email, password});
-        const { accessToken } = data;
         if (!error) {
-            authentication();
-            putAccessToken(accessToken);
-            console.log(getAccessToken());
+            await loginSuccess(data);
         }
-    }
-
-    if (auth) {
-        return <Homepage />
     }
 
     return (
@@ -31,7 +24,7 @@ function LoginPage() {
                 <input onChange={handleEmailChange} type="email" id="email" value={email}/>
                 <label htmlFor="password">Password</label>
                 <input onChange={handlePasswordChange} type="password" id="password" value={password}/>
-                <button onClick={onSubmitHandler} type="button">Login</button>
+                <button onClick={onLogin} type="button">Login</button>
             </div>
             <p>Belum punya akun? <Link to="/register">Daftar disini bray 😎</Link></p>
         </section>

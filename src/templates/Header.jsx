@@ -1,6 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
+import LogoutButton from "../components/LogoutButton.jsx";
 
 function Header({ title }) {
     return (
@@ -10,9 +11,14 @@ function Header({ title }) {
             </h1>
             <div className="navigation">
                 <ul>
-                    <li>Arsip</li>
+                    <li>
+                        <Link to="/arsip">
+                            <span>Arsip</span>
+                        </Link>
+                    </li>
                 </ul>
             </div>
+            <LogoutButton />
         </header>
     )
 }

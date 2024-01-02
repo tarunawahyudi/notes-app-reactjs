@@ -8,6 +8,10 @@ function putAccessToken(accessToken) {
     return localStorage.setItem('accessToken', accessToken);
 }
 
+function putAuthedUser(data) {
+    return localStorage.setItem('u', data);
+}
+
 async function fetchWithToken(url, options = {}) {
     return fetch(url, {
         ...options,
@@ -173,4 +177,5 @@ export {
     archiveNote,
     unarchiveNote,
     deleteNote,
+    putAuthedUser
 };
