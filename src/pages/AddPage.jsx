@@ -1,6 +1,6 @@
 import React from "react";
 import ActionButton from "../components/ActionButton.jsx";
-import {addNote} from "../utils/local-data.js";
+import {addNote} from "../utils/network-data.js";
 
 class AddPage extends React.Component {
 

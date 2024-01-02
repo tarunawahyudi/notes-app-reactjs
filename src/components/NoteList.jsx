@@ -2,11 +2,10 @@ import React from "react";
 import NoteItem from "./NoteItem";
 import { getAllNotes } from "../utils/local-data";
 
-function NoteList() {
-    const allNotes = getAllNotes();
+function NoteList({ notes }) {
     return (
         <section className="notes-list">
-            { allNotes.map((note) => (<NoteItem key={note.id} {...note} />)) }
+            { notes.map((note) => (<NoteItem key={note.id} {...note} />)) }
         </section>
     )
 }

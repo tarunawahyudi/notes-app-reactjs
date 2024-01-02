@@ -12,6 +12,10 @@ function putAuthedUser(data) {
     return localStorage.setItem('u', data);
 }
 
+function removeAuthedUser() {
+    return localStorage.removeItem('u');
+}
+
 function getAuthedUser() {
     return (localStorage.getItem('u')) ? localStorage.getItem('u') : null;
 }
@@ -182,5 +186,6 @@ export {
     unarchiveNote,
     deleteNote,
     putAuthedUser,
-    getAuthedUser
+    getAuthedUser,
+    removeAuthedUser
 };
