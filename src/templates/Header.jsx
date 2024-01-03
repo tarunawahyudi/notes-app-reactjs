@@ -2,6 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 import LogoutButton from "../components/LogoutButton.jsx";
+import ToggleTheme from "../components/ToggleTheme.jsx";
 
 function Header({ title, logout }) {
     return (
@@ -18,6 +19,7 @@ function Header({ title, logout }) {
                     </li>
                 </ul>
             </div>
+            <ToggleTheme />
             <LogoutButton onLogout={logout} />
         </header>
     )

@@ -9,11 +9,12 @@ import RegisterPage from "./pages/RegisterPage.jsx";
 import {AuthProvider} from "./context/AuthContext.js";
 import {getAuthedUser, getUserLogged, putAccessToken, putAuthedUser, removeAuthedUser} from "./utils/network-data.js";
 import LoginHeader from "./templates/LoginHeader.jsx";
+import { ThemeProvider } from './context/ThemeContext.js';
 
 function App() {
 
   const [authedUser, setAuthedUser] = useState(getAuthedUser());
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
   const [locale, setLocale] = useState('id');
 
   const redirect = useNavigate();
@@ -35,39 +36,60 @@ function App() {
       redirect('/login');
   }
 
-  const contextValue = useMemo(() => {
+  const toggleTheme = () => {
+    setTheme((prevTheme) => {
+      const newTheme = prevTheme === 'light' ? 'dark' : 'light';
+      localStorage.setItem('theme', newTheme);
+      return newTheme;
+    });
+  };
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
+
+  const contextAuthValue = useMemo(() => {
       return {
-          authedUser,
+          authedUser
       };
   }, [authedUser]);
 
+  const contextThemeValue = useMemo(() => {
+    return {
+        theme,
+        toggleTheme
+    };
+  }, [theme]);
+
     return (
-        <AuthProvider value={contextValue}>
-            <div className="app-container">
-                {authedUser === null ? (
-                    <>
-                        <LoginHeader title="Mynotes" />
-                        <main>
-                            <Routes>
-                                <Route path="/*" element={<LoginPage loginSuccess={onLoginSuccess} />} />
-                                <Route path="/register" element={<RegisterPage />} />
-                            </Routes>
-                        </main>
-                    </>
-                ) : (
-                    <>
-                        <Header title="Mynotes" logout={onLogout} />
-                        <main>
-                            <Routes>
-                                <Route path="/" element={<Homepage />} />
-                                <Route path="/*" element={<Homepage />} />
-                                <Route path="/notes/new" element={<AddPage />} />
-                                <Route path="/notes/:id" element={<DetailPage />} />
-                            </Routes>
-                        </main>
-                    </>
-                )}
-            </div>
+        <AuthProvider value={contextAuthValue}>
+            <ThemeProvider value={contextThemeValue}>
+                <div className="app-container">
+                    {authedUser === null ? (
+                        <>
+                            <LoginHeader title="Mynotes" />
+                            <main>
+                                <Routes>
+                                    <Route path="/*" element={<LoginPage loginSuccess={onLoginSuccess} />} />
+                                    <Route path="/register" element={<RegisterPage />} />
+                                </Routes>
+                            </main>
+                        </>
+                    ) : (
+                        <>
+                            <Header title="Mynotes" logout={onLogout} />
+                            <main>
+                                <Routes>
+                                    <Route path="/" element={<Homepage />} />
+                                    <Route path="/*" element={<Homepage />} />
+                                    <Route path="/notes/new" element={<AddPage />} />
+                                    <Route path="/notes/:id" element={<DetailPage />} />
+                                </Routes>
+                            </main>
+                        </>
+                    )}
+                </div>
+            </ThemeProvider>
         </AuthProvider>
     );
 
